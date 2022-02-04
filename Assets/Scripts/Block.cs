@@ -6,7 +6,7 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private bool _randomPositionY;
+    [SerializeField] private bool _randomHeight;
     [SerializeField] private float _minHeight;
     [SerializeField] private float _maxHeight;
     [SerializeField] private int _damage;
@@ -27,7 +27,7 @@ public class Block : MonoBehaviour
         transform.Translate(Vector3.back * _speed * Time.deltaTime);
     }
 
-    public void StartParticleSystem()
+    public void AlertOfDanger()
     {
         if (!_isNear)
         {
@@ -40,12 +40,12 @@ public class Block : MonoBehaviour
     {
         _particleSystem.Stop();
         _isNear = false;
-        SetRandomPositionY();
+        SetRandomHeight();
     }
 
-    private void SetRandomPositionY()
+    private void SetRandomHeight()
     {
-        if (_randomPositionY)
+        if (_randomHeight)
         {
             float PositionY = Random.Range(_minHeight, _maxHeight);
             transform.position = new Vector3(transform.position.x, PositionY, transform.position.z);

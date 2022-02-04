@@ -26,7 +26,7 @@ public class GameInfo : MonoBehaviour
         _taskOfLength = 4;
         _taskOfScore = 500;
 
-        ChangeRecordScoreInfo();
+        SetRecordScoreInfo();
         Time.timeScale = 0;
     }
 
@@ -48,7 +48,7 @@ public class GameInfo : MonoBehaviour
             Time.timeScale = 0;
             _hiScoreText.gameObject.SetActive(true);
             _tasksText.gameObject.SetActive(true);
-            ChangeRecordScoreInfo();
+            SetRecordScoreInfo();
         }
         else
         {
@@ -60,15 +60,15 @@ public class GameInfo : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.ChangedHealth += ChangeHealthInfo;
-        _player.ChangedScore += ChangeScoreInfo;
+        _player.ChangedHealth += SetHealthInfo;
+        _player.ChangedScore += SetScoreInfo;
         _player.Died += GameOver;
     }
 
     private void OnDisable()
     {
-        _player.ChangedHealth -= ChangeHealthInfo;
-        _player.ChangedScore -= ChangeScoreInfo;
+        _player.ChangedHealth -= SetHealthInfo;
+        _player.ChangedScore -= SetScoreInfo;
         _player.Died -= GameOver;
     }
 
@@ -88,26 +88,26 @@ public class GameInfo : MonoBehaviour
             _tasksText.text += text;
     }
 
-    private void ChangeHealthInfo(int health)
+    private void SetHealthInfo(int health)
     {
         _healthText.text = "";
         for (int i = 0; i<health; i++)
             _healthText.text += "♥\n";
     }
 
-    private void ChangeScoreInfo(int score)
+    private void SetScoreInfo(int score)
     {
         _scoreText.text = $"{score}";
     }
 
-    private void ChangeRecordScoreInfo()
+    private void SetRecordScoreInfo()
     {
         _hiScoreText.text = $"Рекорд: {_player.RecordScore}";
     }
 
     private void GameOver()
     {
-        ChangeRecordScoreInfo();
+        SetRecordScoreInfo();
         _startButton.gameObject.SetActive(true);
         _pauseButton.gameObject.SetActive(false);
         _hiScoreText.gameObject.SetActive(true);

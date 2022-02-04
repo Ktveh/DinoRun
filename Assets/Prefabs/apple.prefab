@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _nutritionalValue: 0.05
+  _nutritionalValue: 0.055
 --- !u!65 &9099875229084453054
 BoxCollider:
   m_ObjectHideFlags: 0

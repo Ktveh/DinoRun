@@ -7,23 +7,22 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _startHealth;
-    [SerializeField] private Transform _raycastPoint;
-    [SerializeField] private float _raycastDistance;
     [SerializeField] private AudioSource _punchSound;
     [SerializeField] private AudioSource _foodSound;
     [SerializeField] private float _minLength;
     [SerializeField] private int _scoreForHealth;
+    [SerializeField] private float _reductionFactor;
 
     private ParticleSystem _particleSystem;
     private Coroutine _setScaleJob;
     private int _health;
     private int _score;
-    private int _recordScore;
     private float _length;
     private int _recordHealth;
+    private int _recordScore;
     private float _recordLength;
-    private string _recordScoreText;
     private string _recordHealthext;
+    private string _recordScoreText;
     private string _recordLengthText;
 
     public int RecordScore => _recordScore;
@@ -49,17 +48,7 @@ public class Player : MonoBehaviour
     {
         if (_length > _minLength)
         {
-            _length -= (_length / 20) * Time.deltaTime;
-            ChangedScore?.Invoke(_score);
-        }
-        RaycastHit[] hits = Physics.RaycastAll(_raycastPoint.position, Vector3.forward, _raycastDistance);
-        foreach (var hit in hits)
-        {
-            Block block;
-            if (hit.collider.TryGetComponent<Block>(out block))
-            {
-                block.StartParticleSystem();
-            }
+            _length -= _length * _reductionFactor * Time.deltaTime;
         }
     }
 
@@ -78,7 +67,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void AddLength(float nutritionalValue)
+    public void AddLength(float nutritionalValue)
     {
         _length += nutritionalValue;
         StartChangeScale();
@@ -89,7 +78,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void AddScore()
+    public void AddScore()
     {
         _foodSound.Play();
         _score++;
@@ -111,22 +100,7 @@ public class Player : MonoBehaviour
         ChangedScore?.Invoke(_score);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.TryGetComponent<Food>(out Food food))
-        {
-            AddLength(food.NutritionalValue);
-            AddScore();
-        }
-        if (other.TryGetComponent<Block>(out Block block))
-        {
-            TakeDamage(block.Damage);
-            Destroy(other.gameObject);
-        }
-        other.gameObject.SetActive(false);
-    }
-
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         _punchSound.Play();
         _particleSystem.Play();

@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _randomPositionY: 1
+  _randomHeight: 1
   _minHeight: 1
   _maxHeight: 5
   _damage: 1

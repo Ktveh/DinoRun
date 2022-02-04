@@ -6,32 +6,31 @@ public class Spawner : ObjectPool
 {
     [SerializeField] private SpawnElement[] _spawnElements;
     [SerializeField] private int _chanceOfVoid;
-    [SerializeField] private float _secondBetweenSpawn;
+    [SerializeField] private float _delay;
 
-    private int _coutElenents;
     private float _elapsedTime;
     private int _countElements;
 
     private void Start()
     {
-        _coutElenents = 0;
+        _countElements = 0;
         _elapsedTime = 0;
         foreach (SpawnElement spawnElement in _spawnElements)
         {
             for(int i = 0; i < spawnElement.Chance; i++)
             {
                 Initialize(spawnElement.Element);
-                _coutElenents++;
+                _countElements++;
             }
         }
 
-        _countElements = _coutElenents + _chanceOfVoid;
+        _countElements += _chanceOfVoid;
     }
 
     private void Update()
     {
         _elapsedTime += Time.deltaTime;
-        if (_elapsedTime > _secondBetweenSpawn)
+        if (_elapsedTime > _delay)
         {
             _elapsedTime = 0;
             Spawn();
