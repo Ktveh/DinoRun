@@ -14,9 +14,7 @@ public class DangerDetector : MonoBehaviour
         {
             Block block;
             if (hit.collider.TryGetComponent<Block>(out block))
-            {
                 block.AlertOfDanger();
-            }
         }
     }
 }

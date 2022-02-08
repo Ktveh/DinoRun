@@ -37,10 +37,10 @@ public class PlayerMover : MonoBehaviour
         _endTouchPosition = _playerInput.Touch.TouchPosition.ReadValue<Vector2>();
         if (Math.Abs(_endTouchPosition.x - _startTouchPosition.x) > _touchDeadzone)
         { 
-        if (_endTouchPosition.x > _startTouchPosition.x)
-            MoveRight();
-        if (_endTouchPosition.x < _startTouchPosition.x)
-            MoveLeft();
+            if (_endTouchPosition.x > _startTouchPosition.x)
+                MoveRight();
+            if (_endTouchPosition.x < _startTouchPosition.x)
+                MoveLeft();
         }
     }
 
