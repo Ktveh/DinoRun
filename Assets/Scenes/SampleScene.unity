@@ -7704,7 +7704,6 @@ MonoBehaviour:
   _playerHealth: {fileID: 2039532417}
   _playerScore: {fileID: 2039532416}
   _playerRecord: {fileID: 2039532415}
-  _audio: {fileID: 2039532413}
 --- !u!114 &787798061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7806,7 +7805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startButton: {fileID: 750509298}
   _pauseButton: {fileID: 394751280}
-  _audio: {fileID: 2039532413}
   _player: {fileID: 2039532404}
 --- !u!114 &787798066
 MonoBehaviour:
@@ -10320,7 +10318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnElements:
   - Element: {fileID: 432001966725343510, guid: bf18e0d76f378ea44a31064a49569259, type: 3}
-    Chance: 16
+    Chance: 10
   - Element: {fileID: 3341268474401045930, guid: c522dc6f2cb0deb46888651d92924c54, type: 3}
     Chance: 10
   - Element: {fileID: 5763959432163187928, guid: a2dd142bdb3755d4584cb8ee789fa715, type: 3}

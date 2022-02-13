@@ -36,7 +36,7 @@ public class PlayerRecord : MonoBehaviour
         _playerScore.Changed -= CheckScoreRecord;
     }
 
-    private void Start()
+    private void Awake()
     {
         _playerLength = GetComponent<PlayerLength>();
         _playerHealth = GetComponent<PlayerHealth>();
